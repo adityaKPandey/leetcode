@@ -17,7 +17,7 @@ public class TwoSumProblem {
 
       lookupSet.add(number);
     }
-    return new int [0];
+    return new int[0];
   }
 
   public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class TwoSumProblem {
     Arrays.stream(result).forEach(System.out::println);
     System.out.println("######");
 
-    int[] result2 = twoSumProblem.twoSum(new int[]{-1,-5,-2,0,5}, 0);
+    int[] result2 = twoSumProblem.twoSum(new int[]{-1, -5, -2, 0, 5}, 0);
     Arrays.stream(result2).forEach(System.out::println);
     System.out.println("######");
   }
