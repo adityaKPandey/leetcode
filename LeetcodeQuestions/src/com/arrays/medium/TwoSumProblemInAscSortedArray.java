@@ -1,8 +1,7 @@
-package com.arrays;
+package com.arrays.medium;
 
 
 import java.util.Arrays;
-import java.util.HashSet;
 
 // Given an array of integers sorted in ascending order, find two numbers such that they add to a specific target number
 public class TwoSumProblemInAscSortedArray {
