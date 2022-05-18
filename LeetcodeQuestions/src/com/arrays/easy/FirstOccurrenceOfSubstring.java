@@ -6,6 +6,19 @@ package com.arrays.easy;
 //TODO Check efficient solution and implement that one
 public class FirstOccurrenceOfSubstring {
 
+  public int strStrEfficient(String needle , String haystack){
+
+    for(int i = 0 ; i < haystack.length() ; i++){
+      for(int j = 0 ; j < needle.length();j++){
+        if(needle.charAt(j) !=  haystack.charAt(i+j))
+           break;
+        else if(j == needle.length() - 1)
+           return i;
+      }
+    }
+    return -1;
+  }
+
   public int strStr(String needle , String haystack){
       int i = 0 , j = 0 , k = 0 ;
 
@@ -35,6 +48,14 @@ public class FirstOccurrenceOfSubstring {
     System.out.println(firstOccurrenceOfSubstring.strStr("dik" , "indika")) ;
 
     System.out.println(firstOccurrenceOfSubstring.strStr("dik" , "indidika")) ;
+
+    System.out.println(firstOccurrenceOfSubstring.strStrEfficient("dik" , "indika")) ;
+
+    System.out.println(firstOccurrenceOfSubstring.strStrEfficient("dik" , "indidika")) ;
+
+    System.out.println(firstOccurrenceOfSubstring.strStr("a" , "ababa")) ;
+
+    System.out.println(firstOccurrenceOfSubstring.strStr("g" , "indidikag")) ;
 
   }
 
