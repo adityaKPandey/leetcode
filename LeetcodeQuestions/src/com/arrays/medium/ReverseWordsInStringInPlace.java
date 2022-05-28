@@ -10,6 +10,10 @@ words are always separated by a single space .
 Eg. input = "the sky is blue"
    output = "blue is sky the"
 
+
+Solution :
+   Reverse the whole string array first
+   Then reverse the character array at places where we encounter spaces -> The logic is similar to rotate an array in place problem
 */
 
 public class ReverseWordsInStringInPlace {
