@@ -30,14 +30,9 @@ public class CheckIfValidNumber {
       if (c == ' ' && !firstNonWhiteSpaceFound) {
         continue;
       }
-
-
+      
       if (firstNonWhiteSpaceFound && (c == '+' || c == '-'))
         return false;
-
-
-
-
 
 
       if(i > 0 && c  < '0' && c > '9' && ((input.charAt(i-1)  >='0' && input.charAt(i-1) <= '9' ) || input.charAt(i-1) == '.' || input.charAt(i-1) == '+'  || input.charAt(i-1) == '-'))
@@ -45,14 +40,6 @@ public class CheckIfValidNumber {
 
       if(firstNonWhiteSpaceFound && i > 0 && input.charAt(i-1) == ' ' && c != ' ')
         return false;
-
-      if(firstNumberFound){
-        if(dotFound && (c < '0' && c > '9')){
-          return false;
-        }else if(c != ' '  && (c < '0' && c > '9')){
-          return false;
-        }
-      }
 
       if ((c == '+' || c == '-' || c >= '0' && c <= '9' || c == '.') && !firstNonWhiteSpaceFound)
         firstNonWhiteSpaceFound = true;
@@ -64,7 +51,7 @@ public class CheckIfValidNumber {
         dotFound = true;
       }else if(dotFound && c == '.')
         return false;
-      
+
     }
 
     return true;
@@ -96,12 +83,6 @@ public class CheckIfValidNumber {
     System.out.println(checkIfValidNumber.isValidDecimalNumber("+95 4444"));
     System.out.println(checkIfValidNumber.isValidDecimalNumber("+95 4444"));
     System.out.println(checkIfValidNumber.isValidDecimalNumber("+95 4444"));
-
-
-
-
-
-
 
   }
 
