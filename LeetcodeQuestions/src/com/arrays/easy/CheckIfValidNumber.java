@@ -30,7 +30,7 @@ public class CheckIfValidNumber {
       if (c == ' ' && !firstNonWhiteSpaceFound) {
         continue;
       }
-      
+
       if (firstNonWhiteSpaceFound && (c == '+' || c == '-'))
         return false;
 
