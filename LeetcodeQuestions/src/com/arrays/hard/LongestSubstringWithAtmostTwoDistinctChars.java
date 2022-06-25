@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
-
+<TRY AGAIN>
 Given a string S, find the length of the longest substring T that contains at most two
 distinct characters.
 For example,
@@ -16,67 +16,57 @@ T is "ece" which its length is 3.
 
 public class LongestSubstringWithAtmostTwoDistinctChars {
 
-  public long findLenOfLongestSubstringWithAtmostTwoDistinctChars(String input) {
+  /*
+      The trick is to maintain a sliding window that always satisfies the invariant where there
+are always at most two distinct characters in it. When we add a new character that breaks
+this invariant, how can we move the begin pointer to satisfy the invariant? Using the
+above example, our first window is the substring “abba”. When we add the character ‘c’
+into the sliding window, it breaks the invariant. Therefore, we have to readjust the
+window to satisfy the invariant again. The question is which starting point to choose so
+the invariant is satisfied.
+Let’s look at another example where S = “abaac”. We found our first window “abaa”.
+When we add ‘c’ to the window, the next sliding window should be “aac”
 
+   */
+  public long findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient(String input) {
     long maxLen = 0;
-    long len = 0;
-    int k = 0 ;
-    Set<Integer> characters = new HashSet<>();
-    int[] startPointOfSubstrEndingHere = new int[input.length()];
+    int i = 0, j = -1;
+    // i = starting point of this sliding window
+    //
+    for (int k = 1; k < input.length(); k++) {
+      char c = input.charAt(k);
 
-    for (int i = 0; i < input.length(); i++) {
-      char c = input.charAt(i);
+      if ( c == input.charAt(k - 1)) {
+           continue;
+      }else{
+         if(j >= 0 && input.charAt(j) != input.charAt(k)) {
+           maxLen = Math.max(k-i,maxLen);
+           i = j+1;
+         }
 
-      if ( characters.size() < 2 || (characters.contains((int)c) && characters.size() < 3) || (i > 0
-          && input.charAt(i) == input.charAt(i - 1))) {
-
-        len++;
-        startPointOfSubstrEndingHere[i] = k;
-
-      } else {
-
-        if(!characters.contains((int)c)){
-          //brand new char
-           int j = i-1;
-           while(j > 0 && input.charAt(j) == input.charAt(i-1))
-             j--;
-
-           len = i - j ;
-
-
-        }else {
-          //old char but coming after long time
-          int j = i-1;
-          while(j > 0 && ( input.charAt(j) == input.charAt(i-1)  || input.charAt(j) == input.charAt(i)))
-            j--;
-
-          len = i - j ;
-
-        }
-        //maxLenTillThatPos[i] = len;
+         j = k-1;
 
       }
 
-      maxLen = Math.max(len, maxLen);
-
-      characters.add((int) c);
     }
 
-    return maxLen;
+    return  Math.max(input.length()-i,maxLen);
   }
 
   public static void main(String[] args) {
 
      LongestSubstringWithAtmostTwoDistinctChars longestSubstringWithAtmostTwoDistinctChars = new LongestSubstringWithAtmostTwoDistinctChars();
 
-     System.out.println(longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctChars("eceba")) ;
+    System.out.println("aabbc " + longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient("aabbc")) ;
+
+    System.out.println("eceba " + longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient("eceba")) ;
 
 
-     System.out.println(longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctChars("eeebedbb")) ;
+     System.out.println("eeebedbb " + longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient("eeebedbb")) ;
 
-    System.out.println(longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctChars("ebabcbcbc")) ;
+    System.out.println("ebabcbcbc " + longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient("ebabcbcbc")) ;
 
-    System.out.println(longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctChars("ebeeedfbf")) ;
+    System.out.println("ebeeedfbf " + longestSubstringWithAtmostTwoDistinctChars.findLenOfLongestSubstringWithAtmostTwoDistinctCharsEfficient("ebeeedfbf")) ;
 
   }
 
